@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Library.App.ViewModels.BookViewModel>
+
+
+<table class="table table-hover">
+    <thead class="thead-color">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr >
+        <td>
+            <a asp-action="AllDetails" asp-controller="Book" asp-route-id="@item.Id">
+                <img src="~/image/book/@item.Image" alt="Imagem do Livro" style="width: 40px; height: 40px">
+            </a>
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @item.Price.ToString("C")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td class="text-right">
+            <a class="btn btn-warning" asp-controller="Book" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam> </a>
+            <a class="btn btn-info" supress-by-claim-name="Book" supress-by-claim-value="Edit" supress-by-action="Edit,Index" asp-controller="Book" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam> </a>
+            <a class="btn btn-danger" supress-by-claim-name="Book" supress-by-claim-value="Delete"  supress-by-action="Delete,Index" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam> </a>
+        </td>
+    </tr>
+
+}
+    </tbody>
+</table>

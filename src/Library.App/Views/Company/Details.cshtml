@@ -1,0 +1,39 @@
+﻿@using Library.App.Extension
+@model Library.App.ViewModels.CompanyViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da Editora - " + Model.Name;
+}
+
+<h3 style="padding-top: 50px">@ViewData["Title"] </h3>
+<hr>
+
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Document)
+        </dt>
+        <dd class="col-sm-10">
+            @this.FormatDocument(Model.TypePerson, Model.Document)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TypePerson)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TypePerson)
+        </dd>
+    </dl>
+    <div>
+        <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id" asp-controller="Company">Editar</a>
+        <a class="btn btn-info" asp-action="Index" asp-controller="Company">Voltar</a>
+    </div>
+</div>
+<hr />
+<partial name="../Book/_Books" model="@Model.Books" />

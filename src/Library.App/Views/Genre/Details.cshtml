@@ -1,0 +1,31 @@
+﻿@model Library.App.ViewModels.GenreViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Genero - " + Model.Name;
+}
+
+<h3 style="padding-top: 50px">@ViewData["Title"] </h3>
+<hr>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    <div>
+        <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+        <a class="btn btn-info" asp-action="Index" asp-controller="Genre">Voltar</a>
+    </div>
+</div>
+<hr/>
+<partial name="../Book/_Books" model="@Model.Books"/>

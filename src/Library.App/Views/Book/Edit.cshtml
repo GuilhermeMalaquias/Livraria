@@ -1,0 +1,83 @@
+﻿@model Library.App.ViewModels.BookViewModel
+
+@{
+    ViewData["Title"] = "Editar - " + @Model.Title;
+}
+
+<h3 style="padding-top: 50px">@ViewData["Title"] </h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label><br />
+                <label><b>@Model.Author.Name</b></label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicationDate" class="control-label"></label>
+                <input asp-for="PublicationDate" class="form-control" />
+                <span asp-validation-for="PublicationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea cols="40" rows="5" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Imagem Atual</label><br />
+                <img src="~/image/book/@Model.Image" alt="@Model.Image" style="width: 150px; height: 170px" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <div class="custom-file">
+                    <input class="custom-file-input" id="ImageFile" type="file" asp-for="ImageFile" />
+                    <label class="custom-file-label" for="ImageFile" data-browse="procurar" style="width: 400px"></label>
+                    <label style="display: none" id="img_nome"></label>
+                </div>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label"></label><br />
+                <label><b>@Model.Genre.Name</b></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label><br />
+                <label><b>@Model.Company.Name</b></label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

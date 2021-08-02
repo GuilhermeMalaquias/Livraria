@@ -1,0 +1,62 @@
+﻿@model Library.App.ViewModels.BookViewModel
+
+@{
+    ViewData["Title"] = "Excluir o Livro - " + Model.Title;
+}
+
+<h3 style="padding-top: 50px">@ViewData["Title"] </h3>
+<hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <img src="~/image/book/@Model.Image" alt="@Model.Image" style="width: 300px; height: 428px" />
+    </div>
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-2">
+                <h1>@Html.DisplayFor(model => model.Title)</h1>
+            </dt>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Price.ToString("C")
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                Por
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Author.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Genre.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Company.Name)
+            </dd>
+
+        </dl>
+        <div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+            </form>
+        </div>
+    </div>
+
+</div>
